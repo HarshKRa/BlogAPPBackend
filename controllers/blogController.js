@@ -5,7 +5,7 @@ class blogController {
   //added for AllPublic pu
   static getAllPublicBlog= async (req, res) => {
     try {
-      const fetchAllBlog = await blogModel.find({falg : true});
+      const fetchAllBlog = await blogModel.find({flag : true});
       return res.status(200).json(fetchAllBlog);
     } catch (error) {
       return res.status(400).json({ massage: error.massage });
