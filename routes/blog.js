@@ -23,6 +23,13 @@ router.post("/users/login", AuthController.userLogin);
 
 // Protected Routes
 
+// add for all blogs
+router.get(
+  "/get/allPblicblogs",
+  checkIsUserAuthenticated,
+  blogController.getAllPublicBlog
+);
+
 router.get(
   "/get/allblogs",
   checkIsUserAuthenticated,

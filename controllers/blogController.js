@@ -1,6 +1,17 @@
 import blogModel from "../models/blogModel.js";
 
 class blogController {
+
+  //added for AllPublic pu
+  static getAllPublicBlog= async (req, res) => {
+    try {
+      const fetchAllBlog = await blogModel.find({falg : true});
+      return res.status(200).json(fetchAllBlog);
+    } catch (error) {
+      return res.status(400).json({ massage: error.massage });
+    }
+  };
+
   static getAllBlog = async (req, res) => {
     try {
       const fetchAllBlog = await blogModel.find({ user: req.user._id });
@@ -10,17 +21,18 @@ class blogController {
     }
   };
   static addNewBlog = async (req, res) => {
-    const { title, category, description } = req.body;
+    const { title, category, description, flag } = req.body;
 
     try {
-      if (title && category && description) {
+      if (title && category && description && flag) {
         console.log("Not Added");
 
-        console.log(title, category, description);
+        console.log(title, category, description,flag);
         const addBlog = new blogModel({
           title: title,
           description: description,
           category: category,
+          flag : flag,
           thumbnail: req.file.filename,
           user: req.user._id,
         });

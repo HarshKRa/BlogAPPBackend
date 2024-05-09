@@ -18,6 +18,9 @@ const blogSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     refer: "User",
   },
+  flag : {
+    type : Boolean,
+  }
 });
 
 const blogModel = mongoose.model("Blog", blogSchema);
